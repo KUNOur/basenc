@@ -1,8 +1,18 @@
-/** \file */
+/** 
+ * \file base32.h
+ * \brief A header for encoding and decoding data to/from Base32
+ */
 
 #ifndef BASE32_H
 #define BASE32_H
 
+/**
+ * \var typedef unsigned char base32_byte
+ * \brief A type definition for a generic byte
+ *
+ * The base32_byte type is an unsigned character because it has to be one byte
+ * long and the sign bit is always irrelevant.
+ */
 typedef unsigned char base32_byte;
 
 /**
