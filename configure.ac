@@ -23,5 +23,6 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 AC_FUNC_MALLOC
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+                 src/Makefile
+		 tests/Makefile])
 AC_OUTPUT
