@@ -19,6 +19,12 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
+# Check for "Check" Unit Testing Framework
+AM_PATH_CHECK(,[have_check="yes"],
+  AC_MSG_WARN([Check not found; cannot run unit tests!])
+  [have_check="no"])
+AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
+
 # Checks for library functions.
 AC_FUNC_MALLOC
 
