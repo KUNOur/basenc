@@ -21,6 +21,19 @@ START_TEST (test_base32)
 }
 END_TEST
 
+START_TEST (test_base32_encode_block)
+{
+  char str[] = "TEST.";
+  char correct_encoded[] = "KRCVGVBO";
+
+  char encoded[9];
+
+  base32_encode_block(str, encoded);
+
+  ck_assert_str_eq(encoded, correct_encoded);
+}
+END_TEST
+
 Suite*
 base32_suite(void)
 {
@@ -28,6 +41,7 @@ base32_suite(void)
 
   TCase *tc_core = tcase_create("Core");
   tcase_add_test (tc_core, test_base32);
+  tcase_add_test (tc_core, test_base32_encode_block);
   suite_add_tcase(s, tc_core);
 
   return s;
