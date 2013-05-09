@@ -2,7 +2,7 @@
 
 /* Encode a 5-byte block of data to Base32 */
 void
-base32_encode_block(const base32_byte data, char* enc)
+base32_encode_block(const base32_byte *data, char* enc)
 {
   int i;
   int enc_index[8];

@@ -42,7 +42,7 @@ char base32_encoding[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
  * \param enc A pointer to the encoded string
  */
 void
-base32_encode_block(const base32_byte data, char* enc);
+base32_encode_block(const base32_byte *data, char* enc);
 
 /**
  * Base32 Encode
