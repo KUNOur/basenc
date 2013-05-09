@@ -41,7 +41,7 @@ char base32_encoding[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
  * \param data The initial data bytestring
  * \param enc A pointer to the encoded string
  */
-void
+extern void
 base32_encode_block(const base32_byte *data, char* enc);
 
 /**
@@ -56,7 +56,7 @@ base32_encode_block(const base32_byte *data, char* enc);
  * \param enc A pointer to the string into which to store the encoded version.
  * \return An intger: 1 on pass, 0 on failure
  */
-int
+extern int
 base32_encode(const base32_byte *data, int len, char* enc);
 
 #endif /* BASE32_H */
