@@ -6,6 +6,8 @@
 #ifndef BASE32_H
 #define BASE32_H
 
+#define BASE32_PADDING_CHAR '='
+
 /**
  * \var typedef unsigned char base32_byte
  * \brief A type definition for a generic byte

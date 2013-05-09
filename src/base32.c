@@ -9,6 +9,7 @@ base32_encode(const base32_byte *data, int len, char* enc)
   int i, j, k;
   int remaining;
   int enc_index[8];
+  char final_block[5];
 
   if (len > 0 && len >= 5) {
     j = 0;
@@ -29,10 +30,14 @@ base32_encode(const base32_byte *data, int len, char* enc)
 
       j += 8;
     }
-    /* TODO: Finish encoding the remaining data */
     remaining = len - i;
     for (k = 0; k < remaining; k++) {
+      final_block[k] = data[i+k];
     }
+    for (; k < 5; k++) { /* padding */
+      final_block[k] = BASE32_PADDING_CHAR;
+    }
+    /* TODO: Finish encoding the remaining data */
   } else if (len > 0 && len < 5) {
     /* TODO: Encode data of a length less than 5, have to padd data */
   } else {
