@@ -10,6 +10,7 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_RANLIB
 
 # Checks for libraries.
 
