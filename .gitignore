@@ -18,3 +18,4 @@ config.status
 src/.deps/
 src/Makefile
 stamp-h1
+tests/.deps/
