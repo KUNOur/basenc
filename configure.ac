@@ -7,7 +7,7 @@ AC_CONFIG_SRCDIR([src/base32.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CXX
 AC_PROG_CC
 
