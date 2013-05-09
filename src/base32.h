@@ -30,6 +30,22 @@ char base32_encoding[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 			   '6', '7' };
 
 /**
+ * Base32 Encode Block
+ *
+ * Given a bytestring with a length of exactly 5 bytes, return a character
+ * string with a length of 8 bytes that is the Base32-encoded version of that
+ * initial bytestring of data. It is the programmer's responsibility to ensure
+ * that the "encoded" string has enough space for 8 characters and a trailing
+ * null character.
+ *
+ * \param data The initial data bytestring
+ * \param enc A pointer to the encoded string
+ * \return A integer: 1 on success, 0 on failure
+ */
+int
+base32_encode_block(const base32_byte data, char* enc);
+
+/**
  * Base32 Encode
  *
  * Given a bytestring of data, find the Base32 encoding of that bytestring. It
