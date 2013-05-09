@@ -2,7 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "base32.h"
+#include "../src/base32.h"
 
 START_TEST (test_base32)
 {
