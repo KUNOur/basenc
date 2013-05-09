@@ -1,11 +1,9 @@
 #include "base32.h"
 
 /* Encode a 5-byte block of data to Base32 */
-int
+void
 base32_encode_block(const base32_byte data, char* enc)
 {
-  int success = 0;
-
   int i;
   int enc_index[8];
 
@@ -21,8 +19,6 @@ base32_encode_block(const base32_byte data, char* enc)
   for (i = 0; i < 8; i++) {
     enc[i] = base32_encoding[enc_index[i]];
   }
-
-  return success;
 }
 
 /* Encode data to Base32 */

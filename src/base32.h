@@ -40,9 +40,8 @@ char base32_encoding[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
  *
  * \param data The initial data bytestring
  * \param enc A pointer to the encoded string
- * \return A integer: 1 on success, 0 on failure
  */
-int
+void
 base32_encode_block(const base32_byte data, char* enc);
 
 /**
