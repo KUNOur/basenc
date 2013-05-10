@@ -47,4 +47,16 @@ base32_encode_block(const base32_byte *data, char* enc);
 extern int
 base32_encode(const base32_byte *data, int len, char* enc);
 
+/**
+ * Base32 Decode Block
+ *
+ * Given a block of base32-encoded data that is 8 characters long, determine the
+ * array of binary data (5 bytes) to which it corresponds.
+ *
+ * \param encoded The base32-encoded data
+ * \param raw Raw data array
+ */
+void
+base32_decode_block(const char* encoded, base32_byte *raw);
+
 #endif /* BASE32_H */
