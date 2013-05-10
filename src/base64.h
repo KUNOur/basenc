@@ -6,6 +6,10 @@
 #ifndef BASE64_H
 #define BASE64_H
 
+#define BASE64_DATA_BLOCK_SIZE 3
+#define BASE64_ENCODED_BLOCK_SIZE 4
+#define BASE64_PADDING_CHAR '='
+
 /**
  * \var typedef unsigned char base64_byte
  * \brief A type definition for a generic byte
