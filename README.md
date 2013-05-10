@@ -16,6 +16,10 @@ configuration scripts, run
 
 	autoreconf -iv
 
+or
+
+	./buildprep
+
 You should then be able to build this with the standard
 
 	./configure
