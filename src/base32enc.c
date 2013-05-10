@@ -10,6 +10,9 @@
 #define DATA_BLOCK_SIZE 5
 #define ENC_BLOCK_SIZE 8
 
+/*
+ * Print an 8-character block of Base32-encoded data
+ */
 static void
 print_encoded_block(const char* block) {
   int i;
