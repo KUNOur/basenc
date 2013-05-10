@@ -44,7 +44,7 @@ main(int argc, char* argv[])
     ch = fgetc(in);
     while (ch != EOF) {
       block_size++;
-      bata_block[block_size-1] = ch;
+      data_block[block_size-1] = ch;
       if (block_size == 5) {
 	base32_encode_block(data_block, enc_block);
 	print_encoded_block(enc_block);
