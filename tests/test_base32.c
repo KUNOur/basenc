@@ -40,6 +40,19 @@ START_TEST (test_base32_encode_block)
 }
 END_TEST
 
+START_TEST (test_base32_decode_block)
+{
+  char encoded[] = "KRCVGVBO";
+  char correct_decoded[] = "TEST.";
+  base32_byte decoded[6];
+
+  base32_decode_block(encoded, decoded);
+  decoded[5] = '\0';
+
+  ck_assert_str_eq((char*)decoded, correct_decoded);
+}
+END_TEST
+
 Suite*
 base32_suite(void)
 {
