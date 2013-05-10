@@ -8,6 +8,12 @@ Supported Encodings
 
 - Base32
 
+Base32
+------
+
+The version of Base32 supported by this project is that defined in
+[RFC 4648](https://tools.ietf.org/html/rfc4648).
+
 How to Build
 ------------
 
