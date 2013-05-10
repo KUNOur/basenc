@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <check.h>
@@ -10,7 +11,9 @@ START_TEST (test_base32)
   char correct_encoded[] = "KRUGS4ZANFZSAYJAORSXG5BO";
 
   char *encoded = NULL;
-  encoded = malloc(strlen(str) * 2 + 1);
+  int encoded_len = strlen(str) * 2 + 1;
+  printf("[test_base32] encoded_len = %d\n", encoded_len);
+  encoded = malloc(encoded_len);
 
   int ret = base32_encode(str, strlen(str), encoded);
 

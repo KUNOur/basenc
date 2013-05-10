@@ -47,7 +47,7 @@ base32_encode(const base32_byte *data, int len, char* enc)
   if (len > 0 && len >= 5) {
     j = 0;
     /* Encode first part of the data */
-    for (i = 0; i + 5 < len; i += 5) {
+    for (i = 0; i + 5 <= len; i += 5) {
       base32_encode_block(&data[i], &enc[j]);
       /*
       enc_index[0] = (data[i] >> 3) & 0x1F;
@@ -58,22 +58,34 @@ base32_encode(const base32_byte *data, int len, char* enc)
       enc_index[5] = (data[i+3] >> 2) & 0x1F;
       enc_index[6] = ((data[i+3] << 3) & 0x18) | ((data[i+4] >> 5) & 0x7);
       enc_index[7] = data[i+4] & 0x1F;
-      */
+      */ 
 
+      /*
       for (k = 0; k < 8; k++) {
 	enc[j+k] = base32_encoding[enc_index[k]];
       }
+      */
 
       j += 8;
     }
-    remaining = len - i;
-    for (k = 0; k < remaining; k++) {
-      final_block[k] = data[i+k];
+    remaining = len - (i+5);
+    /*
+    printf("[DEBUG] len = %d\n", len);
+    printf("[DEBUG] i = %d\n", i);
+    printf("[DEBUG] remaining = %d\n", remaining);
+    */
+    if (remaining > 0) {
+      for (k = 0; k < remaining; k++) {
+	final_block[k] = data[i+k];
+      }
+      for (; k < 5; k++) { /* padding */
+	final_block[k] = BASE32_PADDING_CHAR;
+      }
+      /* Finish encoding the remaining data */
+      base32_encode_block(final_block, enc);
     }
-    for (; k < 5; k++) { /* padding */
-      final_block[k] = BASE32_PADDING_CHAR;
-    }
-    /* TODO: Finish encoding the remaining data */
+
+    success = 1;
   } else if (len > 0 && len < 5) {
     /* TODO: Encode data of a length less than 5, have to padd data */
   } else {
