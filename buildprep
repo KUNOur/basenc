@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Prepare the build for Autotools
+
+autoreconf -iv
