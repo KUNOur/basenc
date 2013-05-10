@@ -11,13 +11,18 @@ Supported Encodings
 How to Build
 ------------
 
-You should be able to build this with the standard
+This project can use GNU Autotools to build itself. To create the proper
+configuration scripts, run
+
+	autoreconf -iv
+
+You should then be able to build this with the standard
 
 	./configure
 	make
 	make install
 
-This project can use the CMake build system. To build the basenc library
+This project can also use the CMake build system. To build the basenc library
 (libbasenc), do the following in the top-level directory:
 
 	mkdir build
