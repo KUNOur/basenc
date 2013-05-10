@@ -96,10 +96,27 @@ base32_encode(const base32_byte *data, int len, char* enc)
   return success;
 }
 
+/* Reverse Base32 Encoding */
+static int
+base32_encoding_reverse(int ch)
+{
+  int index;
+  if (ch >= 'A') {
+    index = ch - 'A';
+  } else if (ch == BASE32_PADDING_CHAR) {
+    /* TODO: Deal with padding */
+  } else {
+    index = 26 + (ch - '2');
+  }
+  return index;
+}
+
 /* Decode a Base32-encoded block of data */
 void
 base32_decode_block(const char* encoded, base32_byte *raw)
 {
+  /* NOTE: This is wrong because the decoding should not be based on the actual
+   * encoded character, it is based on the index thereof */
   raw[0] = ((encoded[0] << 3) & 0xF8) | ((encoded[1] >> 2) & 0x7);
   raw[1] = ((encoded[1] << 6) & 0xC0) | ((encoded[2] << 1) & 0x1F) 
     | ((encoded[3] >> 4) & 0x1);
