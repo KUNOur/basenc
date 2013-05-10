@@ -30,6 +30,14 @@ This project can also use the CMake build system. To build the basenc library
 	cmake ..
 	make
 
+base32enc
+---------
+
+There is an included command-line tool (called "base32enc") that can be used to
+encode data to Base32. It can be used either from the command line (send an EOF
+character ^D to stop) or it can encode a file. Its output will always be sent to
+stdout.
+
 License
 -------
 
