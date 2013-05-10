@@ -82,8 +82,9 @@ base32_encode(const base32_byte *data, int len, char* enc)
 	final_block[k] = BASE32_PADDING_CHAR;
       }
       /* Finish encoding the remaining data */
-      base32_encode_block(final_block, enc);
+      base32_encode_block(final_block, &enc[j]);
     }
+    enc[j] = '\0';
 
     success = 1;
   } else if (len > 0 && len < 5) {
