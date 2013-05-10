@@ -33,6 +33,32 @@ base32_encode_block(const base32_byte *data, char* enc)
   }
 }
 
+/* Encode small block */
+void
+base32_encode_small_block(const base32_byte *data, int len, char* enc)
+{
+  int i;
+
+  enc[0] = base32_encoding[((data[0] >> 3) & 0x1F)];
+  if (len == 1) {
+    enc[1] = base32_encoding[(data[0] & 0x7)];
+    for (i = 2; i < 8; i++) {
+      enc[i] = BASE32_PADDING_CHAR;
+    }
+  } else {
+    enc[1] = base32_encoding[((data[0] << 2) & 0x1C) | ((data[1] >> 6) & 0x3)];
+    enc[2] = base32_encoding[(data[1] >> 1) & 0x1F];
+    if (len == 2) {
+      enc[3] = (data[1] << 7) & 0x80;
+      for (i = 4; i < 8; i++) {
+	enc[i] = BASE32_PADDING_CHAR;
+      }
+    } else {
+      /* TODO */
+    }
+  }
+}
+
 /* Encode data to Base32 */
 int
 base32_encode(const base32_byte *data, int len, char* enc)
@@ -79,6 +105,7 @@ base32_encode(const base32_byte *data, int len, char* enc)
 	final_block[k] = data[i+k];
       }
       for (; k < 5; k++) { /* padding */
+	/* TODO: FIX THIS - PADDING COMES AT THE END! */
 	final_block[k] = BASE32_PADDING_CHAR;
       }
       /* Finish encoding the remaining data */
@@ -117,6 +144,7 @@ base32_decode_block(const char* encoded, base32_byte *raw)
 {
   /* NOTE: This is wrong because the decoding should not be based on the actual
    * encoded character, it is based on the index thereof */
+  /* TODO: FIX THIS */
   raw[0] = ((encoded[0] << 3) & 0xF8) | ((encoded[1] >> 2) & 0x7);
   raw[1] = ((encoded[1] << 6) & 0xC0) | ((encoded[2] << 1) & 0x1F) 
     | ((encoded[3] >> 4) & 0x1);

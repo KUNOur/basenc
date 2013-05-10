@@ -29,8 +29,22 @@ typedef unsigned char base32_byte;
  * \param data The initial data bytestring
  * \param enc A pointer to the encoded string
  */
-extern void
+void
 base32_encode_block(const base32_byte *data, char* enc);
+
+/**
+ * Base32 Encode Small Block
+ *
+ * Given a block of data that is less than 5 bytes long, encode it to Base32,
+ * padding it at the end.
+ *
+ * \param data The array of data to encode
+ * \param len The length of the data
+ * \param enc The encoded data array
+ */
+void
+base32_encode_small_block(const base32_byte *data, int len, char* enc);
+
 
 /**
  * Base32 Encode
@@ -44,7 +58,7 @@ base32_encode_block(const base32_byte *data, char* enc);
  * \param enc A pointer to the string into which to store the encoded version.
  * \return An intger: 1 on pass, 0 on failure
  */
-extern int
+int
 base32_encode(const base32_byte *data, int len, char* enc);
 
 /**
