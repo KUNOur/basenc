@@ -48,7 +48,7 @@ base32_encode(const base32_byte *data, int len, char* enc)
     j = 0;
     /* Encode first part of the data */
     for (i = 0; i + 5 < len; i += 5) {
-      base32_encode_block(data[i], enc[j]);
+      base32_encode_block(&data[i], &enc[j]);
       /*
       enc_index[0] = (data[i] >> 3) & 0x1F;
       enc_index[1] = ((data[i] << 2) & 0x1C) | ((data[i+1] >> 6) & 0x3);
