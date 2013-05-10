@@ -55,9 +55,14 @@ main(int argc, char* argv[])
       }
       ch = fgetc(in);
     }
-    /* TODO: Finish up any remaining data */
-
-    /* TODO: Output the Base32-encoded stream */
+    if (block_size > 0) {
+      int i;
+      for (i = block_size; i < DATA_BLOCK_SIZE; i++) {
+	data_block[i] = BASE32_PADDING_CHAR;
+      }
+      base32_encode_block(data_block, enc_block);
+      print_encoded_block(enc_block);
+    }
 
     if (in != stdin) {
       fclose(in);
