@@ -7,13 +7,23 @@
  */
 
 #define USAGE_MESSAGE_FMT "Usage: %s [filename]\n"
+#define DATA_BLOCK_SIZE 5
 #define ENC_BLOCK_SIZE 8
+
+static void
+print_encoded_block(const char* block) {
+  int i;
+  for (i = 0; i < ENC_BLOCK_SIZE; i++) {
+    printf("%c", block[i]);
+  }
+}
 
 int
 main(int argc, char* argv[])
 {
   FILE* in = NULL;
   char* fname = NULL;
+  base32_byte data_block[DATA_BLOCK_SIZE];
   char enc_block[ENC_BLOCK_SIZE]; /* block of base32-encoded data */
   int block_size = 0;
   int ch;
@@ -33,10 +43,16 @@ main(int argc, char* argv[])
   if (in) {
     ch = fgetc(in);
     while (ch != EOF) {
-      block_size = (block_size + 1) % ENC_BLOCK_SIZE;
-      /* TODO: Encode the stream to Base32 */
+      block_size++;
+      bata_block[block_size-1] = ch;
+      if (block_size == 5) {
+	base32_encode_block(data_block, enc_block);
+	print_encoded_block(enc_block);
+	block_size = 0;
+      }
       ch = fgetc(in);
     }
+    /* TODO: Finish up any remaining data */
 
     /* TODO: Output the Base32-encoded stream */
 
@@ -45,5 +61,6 @@ main(int argc, char* argv[])
     }
   }
 
+  printf("\n"); /* Print an extra newline for cleaner output */
   return 0;
 }
