@@ -29,6 +29,7 @@ START_TEST (test_base32_encode_block)
   char encoded[9];
 
   base32_encode_block(str, encoded);
+  encoded[8] = '\0';
 
   ck_assert_str_eq(encoded, correct_encoded);
 }
