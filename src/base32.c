@@ -1,5 +1,17 @@
 #include "base32.h"
 
+/**
+ * \var char base32_encoding
+ * \brief The encoding array for Base32
+ *
+ * The Base32 alphabet maps the numebers 0 to 31 to uppercase Latin characters
+ * and numbers between 2 and 7.
+ */
+char base32_encoding[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+			   'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+			   'U', 'V', 'W', 'X', 'Y', 'Z', '2', '3', '4', '5',
+			   '6', '7' };
+
 /* Encode a 5-byte block of data to Base32 */
 void
 base32_encode_block(const base32_byte *data, char* enc)
