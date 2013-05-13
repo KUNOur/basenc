@@ -54,7 +54,25 @@ base32_encode_small_block(const base32_byte *data, int len, char* enc)
 	enc[i] = BASE32_PADDING_CHAR;
       }
     } else {
-      /* TODO */
+      enc[3] = base32_encoding[((data[1] << 4) & 0x10)
+			       | ((data[2] >> 4) & 0xF)];
+      if (len == 3) {
+	enc[4] = base32_encoding[((data[2] << 1) & 0x1E)];
+	for (i = 5; i < 8; i++) {
+	  enc[i] = BASE32_PADDING_CHAR;
+	}
+      } else {
+	enc[4] = base32_encoding[((data[2] << 1) & 0x1E)
+				 | ((data[3] >> 7) & 0x1)];
+	enc[5] = base32_encoding[((data[3] >> 2) & 0x1F)];
+	if (len == 4) {
+	  enc[6] = base32_encoding[((data[3] << 3) & 0x18)];
+	} else {
+	  enc[6] = base32_encoding[((data[3] << 3) & 0x18)
+				   | ((data[4] >> 5) & 0x7)];
+	  enc[7] = base32_encoding[(data[4] & 0x1F)];
+	}
+      }
     }
   }
 }
