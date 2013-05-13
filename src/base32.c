@@ -67,6 +67,9 @@ base32_encode_small_block(const base32_byte *data, int len, char* enc)
 	enc[5] = base32_encoding[((data[3] >> 2) & 0x1F)];
 	if (len == 4) {
 	  enc[6] = base32_encoding[((data[3] << 3) & 0x18)];
+	  for (i = 6; i < 8; i++) {
+	    enc[i] = BASE32_PADDING_CHAR;
+	  }
 	} else {
 	  enc[6] = base32_encoding[((data[3] << 3) & 0x18)
 				   | ((data[4] >> 5) & 0x7)];
