@@ -8,7 +8,7 @@
 START_TEST (test_base32)
 {
   char str[] = "foobar";
-    char correct_encoded[] = "MZXW6TYBOI======";
+    char correct_encoded[] = "MZXW6YTBOI======";
 
   char *encoded = NULL;
   int encoded_len = strlen(str) * 2 + 1;
