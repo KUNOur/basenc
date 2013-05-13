@@ -74,7 +74,8 @@ base32_suite(void)
   TCase *tc_core = tcase_create("Core");
   tcase_add_test (tc_core, test_base32_encode_block);
   tcase_add_test (tc_core, test_base32);
-  tcase_add_test (tc_core, test_base32_decode_block);
+  tcase_add_test (tc_core, test_base32_encode_small_block);
+  //tcase_add_test (tc_core, test_base32_decode_block);
   suite_add_tcase(s, tc_core);
 
   return s;
