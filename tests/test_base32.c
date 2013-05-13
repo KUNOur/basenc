@@ -49,7 +49,7 @@ START_TEST (test_base32_encode_small_block)
   char str3[] = "foo";
   char correct_encoded3[] = "MZXW6===";
   char str4[] = "foob";
-  char correct_encoded4[] = "MZXW6YTQ=";
+  char correct_encoded4[] = "MZXW6YQ=";
 
   char encoded[9];
 
