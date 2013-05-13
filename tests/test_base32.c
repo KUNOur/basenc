@@ -48,6 +48,8 @@ START_TEST (test_base32_encode_small_block)
   char correct_encoded2[] = "MZXQ====";
   char str3[] = "foo";
   char correct_encoded3[] = "MZXW6===";
+  char str4[] = "foob";
+  char correct_encoded4[] = "MZXW6YTQ=";
 
   char encoded[9];
 
@@ -62,6 +64,10 @@ START_TEST (test_base32_encode_small_block)
   base32_encode_small_block(str3, 3, encoded);
   encoded[8] = '\0';
   ck_assert_str_eq(encoded, correct_encoded3);
+
+  base32_encode_small_block(str4, 4, encoded);
+  encoded[8] = '\0';
+  ck_assert_str_eq(encoded, correct_encoded4);
 }
 END_TEST
 
