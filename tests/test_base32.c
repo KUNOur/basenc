@@ -7,7 +7,7 @@
 
 START_TEST (test_base32)
 {
-  char str[] = "foobar"
+  char str[] = "foobar";
     char correct_encoded[] = "MZXW6TYBOI======";
 
   char *encoded = NULL;
