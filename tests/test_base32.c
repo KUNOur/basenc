@@ -7,8 +7,8 @@
 
 START_TEST (test_base32)
 {
-  char str[] = "This is a test.";
-  char correct_encoded[] = "KRUGS4ZANFZSAYJAORSXG5BO";
+  char str[] = "foobar"
+    char correct_encoded[] = "MZXW6TYBOI======";
 
   char *encoded = NULL;
   int encoded_len = strlen(str) * 2 + 1;
@@ -73,8 +73,8 @@ END_TEST
 
 START_TEST (test_base32_decode_block)
 {
-  char encoded[] = "foobar";
-  char correct_decoded[] = "MZXW6YTBOI======";
+  char encoded[] = ""; /* TODO */
+  char correct_decoded[] = ""; /* TODO */
   base32_byte decoded[6];
 
   base32_decode_block(encoded, decoded);
