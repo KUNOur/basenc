@@ -49,7 +49,7 @@ base32_encode_small_block(const base32_byte *data, int len, char* enc)
     enc[1] = base32_encoding[((data[0] << 2) & 0x1C) | ((data[1] >> 6) & 0x3)];
     enc[2] = base32_encoding[(data[1] >> 1) & 0x1F];
     if (len == 2) {
-      enc[3] = (data[1] << 7) & 0x80;
+      enc[3] = base32_encoding[(data[1] << 4) & 0x10];
       for (i = 4; i < 8; i++) {
 	enc[i] = BASE32_PADDING_CHAR;
       }
