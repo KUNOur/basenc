@@ -115,7 +115,7 @@ base32_encode(const base32_byte *data, int len, char* enc)
 
       j += 8;
     }
-    remaining = len - (i+5);
+    remaining = len - i;
     /*
     printf("[DEBUG] len = %d\n", len);
     printf("[DEBUG] i = %d\n", i);
@@ -125,13 +125,10 @@ base32_encode(const base32_byte *data, int len, char* enc)
       for (k = 0; k < remaining; k++) {
 	final_block[k] = data[i+k];
       }
-      for (; k < 5; k++) { /* padding */
-	/* TODO: FIX THIS - PADDING COMES AT THE END! */
-	final_block[k] = BASE32_PADDING_CHAR;
-      }
       /* Finish encoding the remaining data */
-      base32_encode_block(final_block, &enc[j]);
+      base32_encode_small_block(final_block, remaining, &enc[j]);
     }
+    j+= 8;
     enc[j] = '\0';
 
     success = 1;

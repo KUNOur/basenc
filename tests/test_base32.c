@@ -73,8 +73,8 @@ END_TEST
 
 START_TEST (test_base32_decode_block)
 {
-  char encoded[] = "KRCVGVBO";
-  char correct_decoded[] = "TEST.";
+  char encoded[] = "foobar";
+  char correct_decoded[] = "MZXW6YTBOI======";
   base32_byte decoded[6];
 
   base32_decode_block(encoded, decoded);
