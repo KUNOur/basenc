@@ -40,6 +40,19 @@ START_TEST (test_base32_encode_block)
 }
 END_TEST
 
+START_TEST (test_base32_encode_small_block)
+{
+  char str[] = "f";
+  char correct_encoded[] = "MY======";
+  char encoded[9];
+
+  base32_encode_small_block(str, 1, encoded);
+  encoded[8] = '\0';
+  
+  ck_assert_str_eq(encoded, correct_encoded);
+}
+END_TEST
+
 START_TEST (test_base32_decode_block)
 {
   char encoded[] = "KRCVGVBO";
