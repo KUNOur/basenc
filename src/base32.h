@@ -6,6 +6,8 @@
 #ifndef BASE32_H
 #define BASE32_H
 
+#include <string.h>
+
 #define BASE32_PADDING_CHAR '='
 
 /**
