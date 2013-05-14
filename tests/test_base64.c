@@ -1,5 +1,6 @@
 /* Test Base64 Functions */
 
+#include <stdlib.h>
 #include <check.h>
 
 #include "../src/base64.h"
@@ -21,9 +22,9 @@ base64_suite(void)
 {
   Suite *s = suite_create("Base64");
 
-  TCase tc_core = tcase_create("core");
+  TCase *tc_core = tcase_create("core");
   tcase_add_test(tc_core, test_base64_encode_block);
-  suit_add_tcase(s, tc_core);
+  suite_add_tcase(s, tc_core);
 
   return s;
 }
@@ -33,7 +34,7 @@ main(void)
 {
   int number_failed;
   Suite* s = base64_suite();
-  SRunner *sr = srunner_create();
+  SRunner *sr = srunner_create(s);
   srunner_run_all(sr, CK_NORMAL);
   number_failed = srunner_ntests_failed(sr);
   srunner_free(sr);
