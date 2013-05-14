@@ -42,14 +42,15 @@ base64_encode(base64_byte *data, int len, char* encoded)
 
   remaining = len - i;
   if (remaining == 1) {
-    enc[j] = (data[i] >> 2) & 0x3F;
-    enc[j+1] = (data[i] << 4) & 0x30;
-    enc[j+2] = BASE64_PADDING_CHAR;
-    enc[j+3] = BASE64_PADDING_CHAR;
+    encoded[j] = base64_encoding[(data[i] >> 2) & 0x3F];
+    encoded[j+1] = base64_encoding[(data[i] << 4) & 0x30];
+    encoded[j+2] = BASE64_PADDING_CHAR;
+    encoded[j+3] = BASE64_PADDING_CHAR;
   } else if (remaining == 2) {
-    enc[j] = (data[i] >> 2) & 0x3F;
-    enc[j+1] = ((data[i] << 4) & 0x30) | ((data[i+1] >> 4) & 0xF);
-    enc[j+2] = (data[i+1] << 2) & 0x3C;
-    enc[j+3] = BASE64_PADDING_CHAR;
+    encoded[j] = base64_encoding[(data[i] >> 2) & 0x3F];
+    encoded[j+1] = base64_encoding[((data[i] << 4) & 0x30)
+				   | ((data[i+1] >> 4) & 0xF)];
+    encoded[j+2] = base64_encoding[(data[i+1] << 2) & 0x3C];
+    encoded[j+3] = BASE64_PADDING_CHAR;
   }
 }
