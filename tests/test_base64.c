@@ -17,6 +17,18 @@ START_TEST (test_base64_encode_block)
 }
 END_TEST
 
+START_TEST (test_base64_encode)
+{
+  char str[] = "fooba";
+  char correct_encoded[] = "Zm9vYmE=";
+  char encoded[9];
+
+  base64_encode(str, 5, encoded);
+
+  ck_assert_str_eq(encoded, correct_encoded);
+}
+END_TEST
+
 Suite*
 base64_suite(void)
 {
@@ -24,6 +36,7 @@ base64_suite(void)
 
   TCase *tc_core = tcase_create("core");
   tcase_add_test(tc_core, test_base64_encode_block);
+  tcase_add_test(tc_core, test_base64_encode);
   suite_add_tcase(s, tc_core);
 
   return s;
