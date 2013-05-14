@@ -73,12 +73,12 @@ END_TEST
 
 START_TEST (test_base32_decode_block)
 {
-  char encoded[] = "fooba";
-  char correct_decoded[] = "MZXW6YTB";
-  base32_byte decoded[4];
+  char encoded[] = "MZXW6YTB";
+  char correct_decoded[] = "fooba";
+  base32_byte decoded[6];
 
   base32_decode_block(encoded, decoded);
-  decoded[4] = '\0';
+  decoded[5] = '\0';
 
   ck_assert_str_eq((char*)decoded, correct_decoded);
 }

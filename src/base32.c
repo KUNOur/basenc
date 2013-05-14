@@ -151,11 +151,15 @@ base32_decode_block(const char* encoded, base32_byte *raw)
     } else {
       /* TODO: Deal with error case */
     }
+    /*
+    printf("[DEBUG] encoded[%d] = %c = %d\n", i, encoded[i], encoded[i]);
+    printf("[DEBUG] indices[%d] = %d\n", i, indices[i]);
+    */
   }
 
   /* TODO: Decode data from the indices */
-  raw[0] = ((indices[0] << 3) & 0xF8) | ((indices[0] >> 3) & 0x7);
-  raw[1] = ((indices[1] << 6) & 0xC0) | ((indices[2] << 1) & 0x1E)
+  raw[0] = ((indices[0] << 3) & 0xF8) | ((indices[1] >> 2) & 0x7);
+  raw[1] = ((indices[1] << 6) & 0xC0) | ((indices[2] << 1) & 0x3E)
     | ((indices[3] >> 4) & 0x1);
   raw[2] = ((indices[3] << 4) & 0xF0) | ((indices[4] >> 1) & 0xF);
   raw[3] = ((indices[4] << 7) & 0x80) | ((indices[5] << 2) & 0x7C)
