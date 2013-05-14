@@ -90,7 +90,7 @@ START_TEST (test_base32_decode)
 {
   char encoded[] = "MZXW6YTBOI======";
   char correct_decoded[] = "foobar";
-  base32_byte decoded[7];
+  base32_byte decoded[10];
 
   base32_decode(encoded, decoded);
   decoded[6] = '\0';
