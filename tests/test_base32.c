@@ -73,8 +73,8 @@ END_TEST
 
 START_TEST (test_base32_decode_block)
 {
-  char encoded[] = "MZXW6===";
-  char correct_decoded[] = "foo";
+  char encoded[] = "fooba";
+  char correct_decoded[] = "MZXW6YTB";
   base32_byte decoded[4];
 
   base32_decode_block(encoded, decoded);
