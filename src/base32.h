@@ -7,6 +7,7 @@
 #define BASE32_H
 
 #include <string.h>
+#include <assert.h>
 
 #define BASE32_PADDING_CHAR '='
 

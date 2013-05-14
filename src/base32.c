@@ -146,9 +146,11 @@ base32_get_index(char ch)
   } else if (ch >= '2' && ch <= '7') {
     index = ch - '2' + 26;
   } else if (ch == '=') {
-    /* TODO: Deal with padding */
+    /* Deal with padding */
+    index = 0;
   } else {
-    /* TODO: Deal with error case */
+    /* Fail on error case */
+    assert(0);
   }
 
   return index;
@@ -184,7 +186,7 @@ base32_decode(const char* encoded, base32_byte *raw)
 
   int i, j;
   j = 0;
-  for (i = 0; i + 8 < encoded_len; i++) {
+  for (i = 0; i + 8 < encoded_len; i += 8) {
     base32_decode_block(&encoded[i], &raw[j]);
     j += 5;
   }
