@@ -172,3 +172,11 @@ base32_decode_block(const char* encoded, base32_byte *raw)
     | ((indices[6] >> 3) & 0x3);
   raw[4] = ((indices[6] << 5) & 0xE0) | (indices[7] & 0x1F);
 }
+
+/* Decode Base32-Encoded Data */
+int
+base32_decode(const char* encoded, base32_byte *raw)
+{
+  int success = 0;
+  return success;
+}

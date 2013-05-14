@@ -73,4 +73,18 @@ base32_encode(const base32_byte *data, int len, char* enc);
 void
 base32_decode_block(const char* encoded, base32_byte *raw);
 
+/**
+ * Base32 Decode
+ *
+ * Given an array of Base32-encoded data, find the decoded raw binary data that
+ * corresponds to said encoded data. It is the responsibility of the programmer to
+ * ensure that the array of decoded data has enough space in it.
+ *
+ * \param encoded The encoded data array
+ * \param raw The decoded data array
+ * \return An integer: 0 on fail, 1 on success
+ */
+int
+base32_decode(const char* encoded, base32_byte *raw);
+
 #endif /* BASE32_H */
