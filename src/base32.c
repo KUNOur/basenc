@@ -120,21 +120,6 @@ base32_encode(const base32_byte *data, int len, char* enc)
   return success;
 }
 
-/* Reverse Base32 Encoding */
-static int
-base32_encoding_reverse(int ch)
-{
-  int index;
-  if (ch >= 'A') {
-    index = ch - 'A';
-  } else if (ch == BASE32_PADDING_CHAR) {
-    /* TODO: Deal with padding */
-  } else {
-    index = 26 + (ch - '2');
-  }
-  return index;
-}
-
 /* Get Base32 index from encoded data */
 static unsigned int
 base32_get_index(char ch)
