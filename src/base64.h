@@ -33,5 +33,19 @@ typedef unsigned char base64_byte;
 void
 base64_encode_block(const base64_byte *data, char* enc);
 
+/**
+ * Base64 Encode
+ *
+ * Given an array of binary data, find the Base64 representation of that data. It
+ * is left up to the programmer to ensure that the array to hold the encoded data
+ * is large enough to do so.
+ *
+ * \param data The array of binary data
+ * \param len The length of the data array in bytes
+ * \parma encoded The Base64-encoded data array
+ */
+void
+base64_encode(base64_byte *data, int len, char* encoded);
+
 #endif /* BASE64_H */
 
