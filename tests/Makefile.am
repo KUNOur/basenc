@@ -1,4 +1,4 @@
-TESTS = test_base32
+TESTS = test_base32 test_base64
 check_PROGRAMS = test_base32 test_base64
 test_base32_SOURCES = test_base32.c $(top_builddir)/src/base32.h
 test_base32_CFLAGS = @CHECK_CFLAGS@
