@@ -31,7 +31,7 @@ START_TEST (test_base64_encode)
   char correct_encoded2[] = "Zg==";
   base64_encode(str2, 1, encoded);
   encoded[5] = '\0';
-  ck_assert_str_eq(encoded, correct_encoded);
+  ck_assert_str_eq(encoded, correct_encoded2);
 }
 END_TEST
 
