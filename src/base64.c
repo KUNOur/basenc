@@ -16,11 +16,13 @@ base64_encode_block(const base64_byte *data, char* enc)
   int i;
   int enc_index[BASE64_ENCODED_BLOCK_SIZE];
 
-  for (i = 0; i < BASE64_DATA_BLOCK_SIZE; i++) {
-    /* Encode the data block to Base64 */
-    enc[0] = (data[0] >> 2) & 0x3F;
-    enc[1] = ((data[0] << 4) & 0x3C) | ((data[1] >> 4) & 0xF);
-    enc[2] = ((data[1] << 4) & 0x3C) | ((data[2] >> 6) & 0x3);
-    enc[3] = (data[2] & 0x3F);
+  enc_index[0] = (data[0] >> 2) & 0x3F;
+  enc_index[1] = ((data[0] << 4) & 0x3C) | ((data[1] >> 4) & 0xF);
+  enc_index[2] = ((data[1] << 2) & 0x3C) | ((data[2] >> 6) & 0x3);
+  enc_index[3] = (data[2] & 0x3F);
+
+  /* Encode the data block to Base64 */
+  for(i = 0; i < BASE64_ENCODED_BLOCK_SIZE; i++) {
+    enc[i] = base64_encoding[enc_index[i]];
   }
 }
