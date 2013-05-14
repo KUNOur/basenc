@@ -12,7 +12,7 @@ START_TEST (test_base32)
 
   char *encoded = NULL;
   int encoded_len = strlen(str) * 2 + 1;
-  printf("[test_base32] encoded_len = %d\n", encoded_len);
+  /* printf("[test_base32] encoded_len = %d\n", encoded_len); */
   encoded = malloc(encoded_len);
 
   int ret = base32_encode(str, strlen(str), encoded);
@@ -34,7 +34,9 @@ START_TEST (test_base32_encode_block)
   base32_encode_block(str, encoded);
   encoded[8] = '\0';
 
-  printf("encoded = \"%s\"\n", encoded);
+  /*
+  printf("[test_base32_encode_block] encoded = \"%s\"\n", encoded);
+  */
 
   ck_assert_str_eq(encoded, correct_encoded);
 }
