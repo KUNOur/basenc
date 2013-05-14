@@ -19,12 +19,18 @@ END_TEST
 
 START_TEST (test_base64_encode)
 {
-  char str[] = "fooba";
-  char correct_encoded[] = "Zm9vYmE=";
+  char str1[] = "fooba";
+  char correct_encoded1[] = "Zm9vYmE=";
   char encoded[9];
 
-  base64_encode(str, 5, encoded);
+  base64_encode(str1, 5, encoded);
+  encoded[9] = '\0';
+  ck_assert_str_eq(encoded, correct_encoded1);
 
+  char str2[] = "f";
+  char correct_encoded2[] = "Zg==";
+  base64_encode(str2, 1, encoded);
+  encoded[5] = '\0';
   ck_assert_str_eq(encoded, correct_encoded);
 }
 END_TEST
