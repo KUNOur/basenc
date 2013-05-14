@@ -24,7 +24,7 @@ START_TEST (test_base64_encode)
   char encoded[9];
 
   base64_encode(str1, 5, encoded);
-  encoded[9] = '\0';
+  encoded[8] = '\0';
   ck_assert_str_eq(encoded, correct_encoded1);
 
   char str2[] = "f";
