@@ -6,6 +6,8 @@
 #ifndef BASE64_H
 #define BASE64_H
 
+#include <string.h>
+
 #define BASE64_DATA_BLOCK_SIZE 3
 #define BASE64_ENCODED_BLOCK_SIZE 4
 #define BASE64_PADDING_CHAR '='
@@ -46,6 +48,19 @@ base64_encode_block(const base64_byte *data, char* enc);
  */
 void
 base64_encode(base64_byte *data, int len, char* encoded);
+
+/**
+ * Base64 Decode
+ *
+ * Given an array of Base64-encoded data, find the raw binary data which it
+ * represents. It is up to the programmer to ensure that the array which holds the
+ * binary data is large enough to do so.
+ *
+ * \param encoded The Base64-encoded data
+ * \param raw The data to store the raw binary data
+ */
+void
+base64_decode(char* encoded, base64_byte *raw);
 
 #endif /* BASE64_H */
 

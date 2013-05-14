@@ -54,3 +54,14 @@ base64_encode(base64_byte *data, int len, char* encoded)
     encoded[j+3] = BASE64_PADDING_CHAR;
   }
 }
+
+/* Decode Base64-encoded data */
+void
+base64_decode(char* encoded, base64_byte *raw)
+{
+  int encoded_len = strlen(encoded);
+  int i, j;
+  for (i = 0; i + 4 <= encoded_len; i += 4) {
+    /* TODO: Decode data */
+  }
+}
