@@ -178,5 +178,17 @@ int
 base32_decode(const char* encoded, base32_byte *raw)
 {
   int success = 0;
+
+  int encoded_len = strlen(encoded);
+  int remaining;
+
+  int i, j;
+  j = 0;
+  for (i = 0; i + 8 < encoded_len; i++) {
+    base32_decode_block(&encoded[i], &raw[j]);
+    j += 5;
+  }
+  success = 1;
+
   return success;
 }
