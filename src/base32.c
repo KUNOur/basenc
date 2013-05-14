@@ -139,14 +139,26 @@ base32_encoding_reverse(int ch)
 void
 base32_decode_block(const char* encoded, base32_byte *raw)
 {
-  /* NOTE: This is wrong because the decoding should not be based on the actual
-   * encoded character, it is based on the index thereof */
-  /* TODO: FIX THIS */
-  raw[0] = ((encoded[0] << 3) & 0xF8) | ((encoded[1] >> 2) & 0x7);
-  raw[1] = ((encoded[1] << 6) & 0xC0) | ((encoded[2] << 1) & 0x1F) 
-    | ((encoded[3] >> 4) & 0x1);
-  raw[2] = ((encoded[3] << 3) & 0xF0) | ((encoded[4] >> 1) & 0xF);
-  raw[3] = ((encoded[4] << 7) & 0x80) | ((encoded[5] << 2) & 0x7C)
-    | ((encoded[6] >> 3) & 0x3);
-  raw[4] = ((encoded[6] << 5) & 0xE0) | (encoded[7] & 0x1F);
+  unsigned int indices[8];
+  int i;
+  for (i = 0; i < 8; i++) {
+    if (encoded[i] >= 'A' && encoded[i] <= 'Z') {
+      indices[i] = encoded[i] - 'A';
+    } else if (encoded[i] >= '2' && encoded[i] <= '7') {
+      indices[i] = encoded[i] - '2' + 26;
+    } else if (encoded[i] == '=') {
+      /* TODO: Deal with padding */
+    } else {
+      /* TODO: Deal with error case */
+    }
+  }
+
+  /* TODO: Decode data from the indices */
+  raw[0] = ((indices[0] << 3) & 0xF8) | ((indices[0] >> 3) & 0x7);
+  raw[1] = ((indices[1] << 6) & 0xC0) | ((indices[2] << 1) & 0x1E)
+    | ((indices[3] >> 4) & 0x1);
+  raw[2] = ((indices[3] << 4) & 0xF0) | ((indices[4] >> 1) & 0xF);
+  raw[3] = ((indices[4] << 7) & 0x80) | ((indices[5] << 2) & 0x7C)
+    | ((indices[6] >> 3) & 0x3);
+  raw[4] = ((indices[6] << 5) & 0xE0) | (indices[7] & 0x1F);
 }
