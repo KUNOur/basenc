@@ -33,10 +33,23 @@ void
 base64_encode(base64_byte *data, int len, char* encoded)
 {
   int i, j;
+  int remaining;
   j = 0;
   for (i = 0; i + 3 <= len; i += 3) {
     base64_encode_block(&data[i], &encoded[j]);
     j += 4;
   }
-  /* TODO: Finish encoding remaining data */
+
+  remaining = len - i;
+  if (remaining == 1) {
+    enc[j] = (data[i] >> 2) & 0x3F;
+    enc[j+1] = (data[i] << 4) & 0x30;
+    enc[j+2] = BASE64_PADDING_CHAR;
+    enc[j+3] = BASE64_PADDING_CHAR;
+  } else if (remaining == 2) {
+    enc[j] = (data[i] >> 2) & 0x3F;
+    enc[j+1] = ((data[i] << 4) & 0x30) | ((data[i+1] >> 4) & 0xF);
+    enc[j+2] = (data[i+1] << 2) & 0x3C;
+    enc[j+3] = BASE64_PADDING_CHAR;
+  }
 }
