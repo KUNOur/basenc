@@ -84,6 +84,19 @@ START_TEST (test_base32_decode_block)
 }
 END_TEST
 
+START_TEST (test_base32_decode)
+{
+  char encoded[] = "MZXW6YTBOI======";
+  char correct_decoded[] = "foobar";
+  base32_byte decoded[7];
+
+  base32_decode(encoded, decoded);
+  decoded[6] = '\0';
+
+  ck_assert_str_eq((char*)decoded, correct_decoded);
+}
+END_TEST
+
 Suite*
 base32_suite(void)
 {
@@ -94,6 +107,7 @@ base32_suite(void)
   tcase_add_test (tc_core, test_base32);
   tcase_add_test (tc_core, test_base32_encode_small_block);
   tcase_add_test (tc_core, test_base32_decode_block);
+  tcase_add_test (tc_core, test_base32_decode);
   suite_add_tcase(s, tc_core);
 
   return s;
