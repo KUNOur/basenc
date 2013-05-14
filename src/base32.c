@@ -89,7 +89,7 @@ base32_encode(const base32_byte *data, int len, char* enc)
   int i, j, k;
   int remaining;
   int enc_index[8];
-  char final_block[5];
+  base32_byte final_block[5];
 
   if (len > 0 && len >= 5) {
     j = 0;
