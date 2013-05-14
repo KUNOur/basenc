@@ -135,6 +135,25 @@ base32_encoding_reverse(int ch)
   return index;
 }
 
+/* Get Base32 index from encoded data */
+static unsigned int
+base32_get_index(char ch)
+{
+  unsigned int index;
+
+  if (ch >= 'A' && ch <= 'Z') {
+    index = ch - 'A';
+  } else if (ch >= '2' && ch <= '7') {
+    index = ch - '2' + 26;
+  } else if (ch == '=') {
+    /* TODO: Deal with padding */
+  } else {
+    /* TODO: Deal with error case */
+  }
+
+  return index;
+}
+
 /* Decode a Base32-encoded block of data */
 void
 base32_decode_block(const char* encoded, base32_byte *raw)
@@ -142,22 +161,9 @@ base32_decode_block(const char* encoded, base32_byte *raw)
   unsigned int indices[8];
   int i;
   for (i = 0; i < 8; i++) {
-    if (encoded[i] >= 'A' && encoded[i] <= 'Z') {
-      indices[i] = encoded[i] - 'A';
-    } else if (encoded[i] >= '2' && encoded[i] <= '7') {
-      indices[i] = encoded[i] - '2' + 26;
-    } else if (encoded[i] == '=') {
-      /* TODO: Deal with padding */
-    } else {
-      /* TODO: Deal with error case */
-    }
-    /*
-    printf("[DEBUG] encoded[%d] = %c = %d\n", i, encoded[i], encoded[i]);
-    printf("[DEBUG] indices[%d] = %d\n", i, indices[i]);
-    */
+    indices[i] = base32_get_index(encoded[i]);
   }
 
-  /* TODO: Decode data from the indices */
   raw[0] = ((indices[0] << 3) & 0xF8) | ((indices[1] >> 2) & 0x7);
   raw[1] = ((indices[1] << 6) & 0xC0) | ((indices[2] << 1) & 0x3E)
     | ((indices[3] >> 4) & 0x1);
