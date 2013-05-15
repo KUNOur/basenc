@@ -55,6 +55,32 @@ base64_encode(base64_byte *data, int len, char* encoded)
   }
 }
 
+/* Get index of Base64 Character */
+static int
+base64_get_index(char ch)
+{
+  int index;
+
+  if (ch >= 'A' && ch <= 'Z') {
+    index = ch - 'A';
+  } else if (ch >= 'a' && ch <= 'z') {
+    index = 26 + (ch - 'a');
+  } else if (ch >= '0' && ch <= '9') {
+    index = 26 + 26 + (ch - '0');
+  } else if (ch == '+') {
+    index = 26 + 26 + 10;
+  } else if (ch == '/') {
+    index = 26 + 26 + 11;
+  } else if (ch == '=') {
+    index = 0; /* Padding */
+  } else {
+    printf("Incorrect input, illegal character '%c'\n", ch);
+    assert(0); /* Fail on incorrect input */
+  }
+
+  return index;
+}
+
 /* Decode Base64-encoded data */
 void
 base64_decode(char* encoded, base64_byte *raw)

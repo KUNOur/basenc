@@ -6,7 +6,9 @@
 #ifndef BASE64_H
 #define BASE64_H
 
+#include <stdio.h>
 #include <string.h>
+#include <assert.h>
 
 #define BASE64_DATA_BLOCK_SIZE 3
 #define BASE64_ENCODED_BLOCK_SIZE 4
