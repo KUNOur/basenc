@@ -88,7 +88,6 @@ base32_encode(const base32_byte *data, int len, char* enc)
 
   int i, j, k;
   int remaining;
-  int enc_index[8];
   base32_byte final_block[5];
 
   if (len > 0 && len >= 5) {
@@ -167,7 +166,6 @@ base32_decode(const char* encoded, base32_byte *raw)
   int success = 0;
 
   int encoded_len = strlen(encoded);
-  int remaining;
 
   int i, j;
   j = 0;
