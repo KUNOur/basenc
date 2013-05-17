@@ -35,6 +35,18 @@ START_TEST (test_base64_encode)
 }
 END_TEST
 
+START_TEST (test_base64_decode)
+{
+  char encoded[] = "Zm9vYg==";
+  char correct_decoded[] = "foob";
+  char decoded[7];
+
+  base64_decode(encoded, decoded);
+  decoded[5] = '\0';
+  ck_assert_str_eq(decoded, correct_decoded);
+}
+END_TEST
+
 Suite*
 base64_suite(void)
 {
