@@ -86,8 +86,17 @@ void
 base64_decode(char* encoded, base64_byte *raw)
 {
   int encoded_len = strlen(encoded);
-  int i, j;
+  int i, j, k;
+  base64_byte indices[4];
+
+  k = 0;
   for (i = 0; i + 4 <= encoded_len; i += 4) {
-    /* TODO: Decode data */
+    for (j = 0; j < 4; j++) {
+      indices[j] = base64_get_index(encoded[i+j]);
+    }
+    raw[k] = ((indices[i] << 6) & 0xFC) | ((indices[i+1] >> 4) & 0x3);
+    raw[k+1] = ((indices[i+1] << 4) & 0xF0) | ((indices[i+2] >> 2) & 0xF);
+    raw[k+2] = ((indices[i+2] << 6) & 0xC0) | (indices[i+3] & 0x3F);
+    k += 3;
   }
 }
