@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([Basenc], [0.0.1], [/dev/null])
+AC_INIT([Basenc], [0.1.0], [/dev/null])
 AC_CONFIG_SRCDIR([src/base32.c])
 AC_CONFIG_HEADERS([config.h])
 
