@@ -1,1 +1,1 @@
-basenc_MANS = basenc.3
+man3_MANS = basenc.3
