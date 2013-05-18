@@ -6,6 +6,7 @@ AC_INIT([Basenc], [0.1.0], [/dev/null])
 AC_CONFIG_SRCDIR([src/base32.c])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign])
 LT_PREREQ([2.4])
 LT_INIT
