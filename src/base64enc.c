@@ -16,11 +16,15 @@ main(int argc, char* argv[])
   int ch;
   int i;
 
-  if (argc != 2) {
+  if (argc < 1 || argc > 2) {
     printf(USAGE_MESSAGE_FMT, argv[0]);
   } else {
-    fname = argv[1];
-    fp = fopen(fname, "rb");
+    if (argc == 2) {
+      fname = argv[1];
+      fp = fopen(fname, "rb");
+    } else {
+      fp = stdin;
+    }
     if (fp) {
       i = 0;
       while ((ch = fgetc(fp)) != EOF) {
@@ -33,7 +37,8 @@ main(int argc, char* argv[])
 	  i = 0;
 	}
       }
-      fclose(fp);
+      if (fp != stdin)
+	fclose(fp);
     } else {
       printf("Error opening file: %s\n", fname);
     }
