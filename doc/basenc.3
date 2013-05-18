@@ -1,0 +1,24 @@
+.TH BASENC 3 "May 18, 2013" BASENC
+
+.SH NAME
+basenc \- Base32/Base64-encoding C library
+
+.SH SYNOPSIS
+#include <basenc.h>
+
+int
+base32_encode(const base32_byte* data, char* encoded);
+
+void
+base32_decode(const char* encoded, base32_byte raw);
+
+.SH DESCRIPTION
+Basenc is used to encode and decode binary data to and from Base32 and
+Base64.
+
+.SH RETURN VALUES
+Functions that return an integer will return one on success and zero on an
+error.
+
+.SH STANDARDS
+Basenc attempts to conform to RFC 4648.
