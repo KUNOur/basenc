@@ -6,11 +6,14 @@ AC_INIT([Basenc], [0.1.0], [/dev/null])
 AC_CONFIG_SRCDIR([src/base32.c])
 AC_CONFIG_HEADERS([config.h])
 
-# Checks for programs.
 AM_INIT_AUTOMAKE([foreign])
+LT_PREREQ([2.4])
+LT_INIT
+
+# Checks for programs.
 AC_PROG_CXX
 AC_PROG_CC
-AC_PROG_RANLIB
+#AC_PROG_RANLIB
 
 # Checks for libraries.
 
