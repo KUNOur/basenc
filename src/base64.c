@@ -119,3 +119,20 @@ base64_decode(char* encoded, base64_byte *raw)
     k += 3;
   }
 }
+
+/* Find allocated buffer size */
+int
+base64_allocated_size(int data_len)
+{
+  int size = -1;
+  if (data_len > 0) {
+    size = size * 4;
+    if (size % 3 == 0) {
+      size /= 3;
+    } else {
+      size = (size / 3) + 3;
+    }
+    size += 1; /* Need for null character */
+  }
+  return size;
+}

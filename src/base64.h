@@ -83,5 +83,18 @@ base64_encode(base64_byte *data, int len, char* encoded);
 void
 base64_decode(char* encoded, base64_byte *raw);
 
+/**
+ * Base64 Allocated Size
+ *
+ * Given the length of a piece of binary data that is to be encoded to Base64,
+ * return the minimum required size for a buffer that is to hold the encodeed
+ * data.
+ *
+ * \param data_len The length of the data
+ * \return the size of the buffer or -1 on error
+ */
+int
+base64_allocated_size(int data_len);
+
 #endif /* BASE64_H */
 
