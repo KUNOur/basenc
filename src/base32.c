@@ -196,3 +196,20 @@ base32_decode(const char* encoded, base32_byte *raw)
 
   return success;
 }
+
+/* Find minimum size for Base32-encoded data buffer */
+int
+base32_allocated_size(int data_len)
+{
+  int size = -1;
+  if (data_len > 0) {
+    size = data_len * 8;
+    if (size % 5 == 0) {
+      size = size / 5;
+    } else {
+      size = (size / 5) + 5;
+    }
+  }
+  return size;
+}
+

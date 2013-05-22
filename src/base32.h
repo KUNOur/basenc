@@ -109,4 +109,17 @@ base32_decode_block(const char* encoded, base32_byte *raw);
 int
 base32_decode(const char* encoded, base32_byte *raw);
 
+/**
+ * Base32 Allocated Size
+ *
+ * Given the length of a piece of binary data that is to be encoded to Base32,
+ * return the minimum required size for a buffer that is to hold the encodeed
+ * data.
+ *
+ * \param data_len The length of the data
+ * \return the size of the buffer or -1 on error
+ */
+int
+base32_allocated_size(int data_len);
+
 #endif /* BASE32_H */
