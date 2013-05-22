@@ -209,6 +209,7 @@ base32_allocated_size(int data_len)
     } else {
       size = (size / 5) + 5;
     }
+    size += 1; /* Needed for null character */
   }
   return size;
 }
