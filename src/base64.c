@@ -107,17 +107,33 @@ base64_decode(char* encoded, base64_byte *raw)
   int encoded_len = strlen(encoded);
   int i, j, k;
   base64_byte indices[4];
-
+  
+  /*2015.10.19 by kun*/
+  /*add eqlNum to record the symbol '==',because the 'A' decode index equal 0,as same as '=='*/
+  int eqlNum = 0;		
   k = 0;
   for (i = 0; i + 4 <= encoded_len; i += 4) {
     for (j = 0; j < 4; j++) {
       indices[j] = base64_get_index(encoded[i+j]);
+      if (encoded[i+j] =='=')
+      {
+      	eqlNum++;
+      }
     }
-    raw[k] = ((indices[i] << 6) & 0xFC) | ((indices[i+1] >> 4) & 0x3);
-    raw[k+1] = ((indices[i+1] << 4) & 0xF0) | ((indices[i+2] >> 2) & 0xF);
-    raw[k+2] = ((indices[i+2] << 6) & 0xC0) | (indices[i+3] & 0x3F);
+    
+    /*2015.10.19 by kun*/
+    /*change all indices[i] => indices[j]*/
+    /*change the code indices[j] << 6  => indices[j] << 2*/
+    j = 0;
+    raw[k] = ((indices[j] << 2) & 0xFC) | ((indices[j+1] >> 4) & 0x3);
+    raw[k+1] = ((indices[j+1] << 4) & 0xF0) | ((indices[j+2] >> 2) & 0xF);
+    raw[k+2] = ((indices[j+2] << 6) & 0xC0) | (indices[j+3] & 0x3F);
     k += 3;
   }
+  
+  /*2015.10.19 by kun*/
+  /*record the correct num of the string with '\0',and need to decrease the '\0' which be decoded from '=='*/
+	k = k - eqlNum;
 }
 
 /* Find allocated buffer size */
